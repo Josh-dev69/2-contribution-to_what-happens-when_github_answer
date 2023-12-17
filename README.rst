@@ -209,6 +209,10 @@ Check HSTS list
 DNS lookup
 ----------
 
+DNS is a critical infrastructure that enables the internet to function
+smoothly by translating user-friendly domain names into the numerical IP
+addresses necessary for communication between devices.
+
 * Browser checks if the domain is in its cache. (to see the DNS Cache in
   Chrome, go to `chrome://net-internals/#dns <chrome://net-internals/#dns>`_).
 * If not found, the browser calls ``gethostbyname`` library function (varies by
@@ -227,6 +231,10 @@ DNS lookup
 
 ARP process
 -----------
+
+ARP, or Address Resolution Protocol, is a network protocol used to map an IP address
+(logical address) to a corresponding MAC address (physical address) in a local network.
+It plays a crucial role in enabling communication between devices within the same subnet.
 
 In order to send an ARP (Address Resolution Protocol) broadcast the network
 stack library needs the target IP address to lookup. It also needs to know the
@@ -629,6 +637,16 @@ CSS interpretation
 * A CSS parser can be top-down or bottom-up when a specific parser generator
   is used.
 
+When parsing CSS files, one essential concept to understand is specificity.
+Specificity is a set of rules that determines which style declarations apply
+to an element when there are conflicting styles. It plays a crucial role in
+resolving style conflicts and ensuring that the correct styles are applied to
+elements.
+
+Understanding specificity is crucial for developers to write maintainable and predictable
+stylesheets, avoiding unexpected style conflicts and ensuring that styles are applied as
+intended
+
 Page Rendering
 --------------
 
@@ -662,6 +680,50 @@ Page Rendering
 * Final layer positions are computed and the composite commands are issued
   via Direct3D/OpenGL. The GPU command buffer(s) are flushed to the GPU for
   asynchronous rendering and the frame is sent to the window server.
+
+When creating the 'Frame Tree' or 'Render Tree,' it's essential to understand its
+significance in representing the visual structure of a web page. The Render Tree
+is a critical internal structure used by browsers to efficiently render and display
+web content.
+
+The Render Tree is a hierarchical structure that mirrors the DOM (Document Object
+Model) but includes only the elements that contribute to the visual representation
+of the page.
+Each node in the Render Tree corresponds to a visual element (e.g., a box) with its
+associated styles and layout information.
+
+ * Importance of the Render Tree:
+   * The Render Tree serves as the basis for rendering the visual layout of the web
+     page on the user's screen.
+   * It represents the structure of elements that need to be displayed, considering
+     styles, layout, and positioning.
+
+* Reflow (Layout) and Repaint:
+  * Reflow (Layout): Reflow is the process of calculating the layout and geometry of
+    elements in the Render Tree. It involves determining the size and position of 
+    each element based on styles, content, and layout rules.
+  * Repaint: Repaint is the process of updating the visual appearance of elements on
+    the screen without altering their layout. It occurs when changes affect only the
+    visual style (e.g., color, visibility) and not the layout.
+
+* Triggers for Reflow/Repaint:
+  * Changes to the DOM or styles can trigger reflow and repaint operations.
+  * Adding, removing, or modifying elements in the DOM, changing styles, or adjusting
+    layout properties (width, height) often necessitate reflow.
+
+* Optimizations to Minimize Reflow/Repaint:
+  * Browsers aim to optimize rendering performance by minimizing reflow and repaint.
+  * Techniques like batching changes, using CSS transitions, and avoiding frequent 
+    style modifications contribute to a smoother user experience.
+
+* Asynchronous Operations:
+  * Modern browsers employ asynchronous rendering to handle changes efficiently.
+  * Asynchronous operations, such as requestAnimationFrame, help batch rendering
+    tasks and reduce the impact on performance.
+
+Understanding the role of the Render Tree and the concepts of reflow and repaint is
+crucial for web developers. Minimizing reflow/repaint operations and optimizing styles
+contribute to a more responsive and visually pleasing web experience for users.
 
 GPU Rendering
 -------------
